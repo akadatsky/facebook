@@ -44,5 +44,24 @@
         android:layout_marginBottom="10dp"
         android:text="Me request custom"/>
 
+    <Button
+        android:id="@+id/request_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Request Publish"/>
+
+    <Button
+        android:id="@+id/check_permissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Check Permissions"/>
+
+
 
 </LinearLayout>

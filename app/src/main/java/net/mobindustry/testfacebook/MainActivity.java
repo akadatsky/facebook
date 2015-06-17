@@ -1,8 +1,8 @@
 package net.mobindustry.testfacebook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -20,9 +20,9 @@ import com.facebook.login.LoginResult;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Set;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private final static String TAG = "MainActivityTag";
 
@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCancel() {
-            // App code
+            Log.i(TAG, "onCancel");
         }
 
         @Override
         public void onError(FacebookException exception) {
-            // App code
+            Log.i(TAG, "onError");
         }
     };
 
@@ -123,6 +123,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        findViewById(R.id.request_publish).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().logInWithPublishPermissions(MainActivity.this, Arrays.asList("publish_actions"));
+            }
+        });
+
+        findViewById(R.id.check_permissions).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
+                Log.i(TAG, "permissions: " + permissions);
+            }
+        });
+
 
     }
 }
