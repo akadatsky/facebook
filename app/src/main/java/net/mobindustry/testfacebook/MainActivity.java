@@ -2,6 +2,7 @@ package net.mobindustry.testfacebook;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 import org.json.JSONObject;
 
@@ -139,6 +142,24 @@ public class MainActivity extends Activity {
             }
         });
 
+        findViewById(R.id.publish).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentTitle("Hello Facebook")
+                            .setContentDescription(
+                                    "The 'Hello Facebook' sample  showcases simple Facebook integration")
+                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                            .build();
+
+                    ShareDialog shareDialog = new ShareDialog(MainActivity.this);
+                    shareDialog.show(linkContent);
+                }
+
+            }
+        });
 
     }
 }
